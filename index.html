@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fundamentals of JS</title>
+	<script>
+		var x = [3, 5, 'Dojo', 'rocks', 'Michael', 'Sensei'];
+		for (var value in x) {
+			console.log(x[value]);
+		}
+		x.push(100);
+		x.push([]);
+		console.log(x);
+		var sum = 0;
+		for (var i = 1; i <= 500; i++) {
+			sum += i;
+		}
+		console.log(sum);
+		var arr2 = [1, 5, 90, 25, -3, 0];
+		var min = arr2[0];
+		for (var j = 0; j < arr2.length; j++) {
+			if (min > arr2[j]) {
+				min = arr2[j];
+			}
+		}
+		console.log(min);
+		var avg = 0;
+		for (var k = 0; k < arr2.length; k++) {
+			avg += arr2[k];
+		}
+		console.log(avg/arr2.length);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Interpreter Assignment</title>
+	<script>
+		// Problem 1
+		var first_variable; // first_variable is hoisted to the top
+		console.log(first_variable); // This will output undefined
+		first_variable = "Yipee I was first!"; 
+
+		function firstFunc() {
+			first_variable = "Not anymore!"; // This refers to the global first_variable because it will not be able to find
+											 // a first_variable in the local function scope
+			console.log(first_variable);
+		}
+
+		console.log(first_variable); // The output will be 'Yipee I was first!'
+
+		// Problem 2
+		var food = "Chicken"; // Variable declaration and assignment
+
+		function eat() {
+			var food; // Food is hoisted up to the top
+			food = "half-chicken"; // It is then assigned to half-chicken
+			console.log(food);
+			food = "gone"; // Now food is assigned to gone
+		}
+
+		eat(); // This will console log 'half-chicken' and set the local variable food to 'gone'
+		console.log(food); // This will output as 'Chicken' because the global food was not changed
+
+		// Problem 3
+		var new_word = "NEW!";
+
+		function lastFunc() {
+			new_word = "old";
+		}
+		// Output will be 'NEW!'
+		// The function lastFunc was not called so new_word never actually changes
+		console.log(new_word);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

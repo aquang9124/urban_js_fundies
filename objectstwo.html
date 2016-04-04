@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Fundamentals: Creating Objects</title>
+</head>
+<body>
+	<script>
+		function Vehicle(name, speed, wheels, numpass) {
+			this.name = name;
+			this.speed = speed;
+			this.wheels = wheels;
+			this.numPassengers = numpass;
+			this.distance_travelled = 0;
+			this.vin = Math.floor(Math.random()*(10000000 - 1000000));
+		}
+		Vehicle.prototype.move = function() {
+			this.distance_travelled += this.speed;
+			console.log("Vroommm!");
+			return this;
+		};
+
+		Vehicle.prototype.checkMiles = function() {
+			console.log(this.distance_travelled);
+			return this;
+		};
+
+		Vehicle.prototype.checkVIN = function() {
+			console.log(this.vin);
+		};
+
+		bike = new Vehicle('Bike', 100, 2, 1);
+		bike.checkVIN();
+	</script>
+</body>
+</html>

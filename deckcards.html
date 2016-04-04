@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Deck of Cards</title>
+</head>
+<body>
+	<script>
+		function Deck() {
+			this.cards = ['ac', 'ad', 'ah', 'asp', '2c', '2d', '2h', '2sp', '3c', '3d', '3h', '3sp', '4c', '4d', '4h', '4sp', '5c', '5d', '5h', '5sp', '6c', '6d', '6h', '6sp', '7c', '7d', '7h', '7sp', '8c', '8d', '8h', '8sp', '9c', '9d', '9h', '9sp', '10c', '10d', '10h', '10sp', 'jc', 'jd', 'jh', 'jsp', 'qc', 'qd', 'qh', 'qsp', 'kc', 'kd', 'kh', 'ksp',];
+		}
+
+		Deck.prototype.deck = ['ac', 'ad', 'ah', 'asp', '2c', '2d', '2h', '2sp', '3c', '3d', '3h', '3sp', '4c', '4d', '4h', '4sp', '5c', '5d', '5h', '5sp', '6c', '6d', '6h', '6sp', '7c', '7d', '7h', '7sp', '8c', '8d', '8h', '8sp', '9c', '9d', '9h', '9sp', '10c', '10d', '10h', '10sp', 'jc', 'jd', 'jh', 'jsp', 'qc', 'qd', 'qh', 'qsp', 'kc', 'kd', 'kh', 'ksp',];
+
+		Deck.prototype.shuffle = function() {
+			var currentIndex = this.cards.length,
+				temporaryValue,
+				randomIndex;
+
+			// While there are elements to shuffle
+			while (0 !== currentIndex) {
+
+				// Pick a random remaining element
+				randomIndex = Math.floor(Math.random() * currentIndex);
+				currentIndex -= 1;
+
+				// And swap it with the current element
+				temporaryValue = this.cards[currentIndex];
+				this.cards[currentIndex] = this.cards[randomIndex];
+				this.cards[randomIndex] = temporaryValue;
+			}
+			return this;
+		};
+
+		Deck.prototype.reset = function() {
+			this.cards = this.deck;
+			return this;
+		};
+
+		Deck.prototype.deal = function() {
+			var randomIndex = Math.floor(Math.random()*this.cards.length);
+			var card = this.cards.splice(randomIndex, 1);
+			return card;
+		};
+
+		deck0 = new Deck();
+		deck0.shuffle();
+		console.log(deck0.cards);
+		console.log(deck0.deal());
+		console.log(deck0.cards);
+		deck0.reset();
+		console.log(deck0.cards);
+	</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Fundamentals Part 2</title>
+	<script>
+		// sumUp standalone function
+		function sumUp(x, y) {
+			var sum = 0;
+			for (var i = x; i <= y; i++) {
+				sum += i;
+			}
+			console.log(sum);
+		}
+		sumUp(1, 5);
+		// sumUp anonymous function
+		var sumUp = function(x, y) {
+			var sum = 0;
+			for (var i = x; i <= y; i++) {
+				sum += i;
+			}
+		};
+
+		// findMin standalone function
+		function findMin(arr) {
+			var min = 0;
+			for (var i = 0; i < arr.length; i++) {
+				if (min > arr[i]) {
+					min = arr[i];
+				}
+			}
+			console.log(min);
+		}
+		findMin([1, 2, 3, 4, 5, 6, 0]);
+		// findMin anonymous function
+		var findMin = function(arr) {
+			var min = arr[0];
+			for (var i = 0; i < arr.length; i++) {
+				if (min > arr[i]) {
+					min = arr[i];
+				}
+			}
+		};
+
+		// findAvg standalone function
+		function findAvg(arr) {
+			var avg = 0;
+			for (var i = 0; i < arr.length; i++) {
+				avg += arr[i];
+			}
+			return avg/arr.length;
+		}
+		console.log(findAvg([1, 3, 4, 5]));
+		// findAvg anonymous function
+		var findAvg = function(arr) {
+			var avg = 0;
+			for (var i = 0; i < arr.length; i++) {
+				avg += arr[i];
+			}
+			return avg/arr.length;
+		};
+
+		var part1;
+		part1 = {
+			sumUp: function(x, y) {
+				var sum = 0;
+				for (var i = x; i <= y; i++) {
+					sum += i;
+				}
+				console.log(sum);
+			},
+
+			findMin: function(arr) {
+				var min = arr[0];
+				for (var i = 0; i < arr.length; i++) {
+					if (min > arr[i]) {
+						min = arr[i];
+					}
+				}
+				console.log(min);
+			},
+
+			findAvg: function(arr) {
+				var avg = 0;
+				for (var i = 0; i < arr.length; i++) {
+					avg += arr[i];
+				}
+				return avg/arr.length;
+			}
+		};
+		part1.sumUp(1, 4);
+		part1.findMin([1, 3, 4, -1, -100]);
+		console.log(part1.findAvg([2, 3, 35, 8, 99]));
+
+		var person = {
+			name: 'Alex',
+			distance_traveled: 0,
+			sayName: function() {
+				console.log(this.name);
+				return this;
+			},
+			saySomething: function(str) {
+				console.log(this.name + " says: " + str);
+				return this;
+			},
+			walk: function() {
+				console.log(this.name + " is walking.");
+				this.distance_traveled += 3;
+				return this;
+			},
+			run: function() {
+				console.log(this.name + " is running!");
+				this.distance_traveled += 10;
+				return this;
+			},
+			crawl: function() {
+				console.log(this.name + " is crawling...");
+				this.distance_traveled += 1;
+				return this;
+			},
+			status: function() {
+				console.log(this.distance_traveled);
+				return this;
+			}
+		};
+
+		person.sayName();
+		person.saySomething('I like eggs.');
+		person.walk().walk().run().crawl().status();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

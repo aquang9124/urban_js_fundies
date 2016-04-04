@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Fundamentals III</title>
+</head>
+<body>
+	<script>
+		function personConstructor(name) {
+			var person = {
+				name: name,
+				distance_traveled: 0,
+				sayName: function() {
+					console.log(this.name);
+				},
+				saySomething: function(str) {
+					console.log(this.name + " says '" + str + "'");
+				},
+				walk: function() {
+					console.log(this.name + " is walking.");
+					this.distance_traveled += 3;
+					return true;
+				},
+				run: function() {
+					console.log(this.name + " is running");
+					this.distance_traveled += 10;
+					return true;
+				},
+				crawl: function() {
+					console.log(this.name + " is crawling");
+					this.distance_traveled += 1;
+					return true;
+				},
+			};
+			return person;
+		}
+		var person = personConstructor("Alex");
+		person.sayName();
+		person.walk();
+		person.crawl();
+		person.crawl();
+		person.run();
+		console.log(person.distance_traveled);
+		person.saySomething("Hi!");
+
+		function ninjaConstructor (name, cohort) {
+			var ninja = {
+				name: name,
+				cohort: cohort,
+				beltLevel: 'Yellow',
+				levelUp: function() {
+					return this.beltLevel === 'Yellow' ? this.beltLevel = 'Red' : this.beltLevel = 'Black';
+				},
+			};
+			return ninja;
+		}
+		var ninja0 = ninjaConstructor('Alex', 'January');
+		console.log(ninja0.name);
+		console.log(ninja0.beltLevel);
+		ninja0.levelUp();
+		console.log(ninja0.beltLevel);
+		ninja0.levelUp();
+		console.log(ninja0.beltLevel);
+
+		function Ninja(name, age, prevOccupation) {
+			// Public attributes declared here
+			this.name = name;
+			this.age = age;
+			this.prevOccupation = prevOccupation;
+			
+			// Private variables declared here
+			var privateVar = "This is a private variable";
+			var self = this;
+			var privateMethod = function() {
+				console.log("This is a private method for " + self.name);
+			};
+
+			// Public methods declared here
+			this.introduce = function() {
+				console.log("Hi my name is " + this.name + ". I used to be a " + this.prevOccupation + " and now I'm a ninja!");
+				privateMethod();
+				console.log(privateVar);
+			};
+		}
+
+		var Alex = new Ninja("Alex", 24, "Student");
+		console.log(Alex.name);
+		Alex.introduce();
+	</script>
+</body>
+</html>
