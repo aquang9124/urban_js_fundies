@@ -61,13 +61,12 @@
 
 		this.update = function(time){
 			var el = document.getElementById(html_id);
-
 			//see if the circle is going outside the browser. if it is, reverse the velocity
-			if( this.info.cx >= document.body.clientWidth - 10 || this.info.cx <= 10)
+			if( this.info.cx >= document.body.clientWidth || this.info.cx < 0)
 			{
 				this.info.velocity.x = this.info.velocity.x * -1;
 			}
-			if( this.info.cy >= document.body.clientHeight - 10 || this.info.cy <= 10)
+			if( this.info.cy >= document.body.clientHeight || this.info.cy < 0)
 			{
 				this.info.velocity.y = this.info.velocity.y * -1;
 			}
@@ -142,7 +141,7 @@
 	}
 
 	document.onmouseup = function(e){
-		time_pressed = (getTime() - mousedown_time) - 30;
+		time_pressed = (getTime() - mousedown_time);
 		playground.createNewCircle(e.x, e.y, time_pressed);
 	}
 	
