@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Callbacks Pt. I</title>
+</head>
+<body>
+	<script>
+		function doSomething(x) {
+			x();
+		}
+		var b = function() {
+			console.log("Something");
+		};
+		doSomething(b);
+
+		function makePasta(pasta, makeSauce) {
+			console.log("Boiling water");
+			console.log("Putting " + pasta + " pasta in the water");
+			var sauce = makeSauce();
+
+			console.log("Mixing sauce");
+			console.log("Pasta is done!");
+			console.log(pasta + " Pasta with " + sauce + " sauce! Voila!");
+			var finishedPasta = pasta + " with " + sauce;
+			return finishedPasta;
+		}
+
+		function makePesto() {
+			console.log("Making Pesto");
+			return "pesto";
+		}
+
+		function makeAlfredo() {
+			console.log("Making Alfredo");
+			return "alfredo";
+		}
+
+		console.log(makePasta("Penne", makeAlfredo));
+		makePasta("Farfalle", makePesto);
+
+		function makeSausages(type, makeSpices) {
+			console.log("Starting sausage making process");
+
+			var spices = makeSpices();
+			console.log("Adding spices");
+			return type + " sausages with " + spices + "!";
+		}
+
+		function makeLemonPepper() {
+			console.log("Making lemon pepper!");
+			return "lemon pepper";
+		}
+
+		console.log(makeSausages("Chicken apple", makeLemonPepper));
+	</script>
+</body>
+</html>

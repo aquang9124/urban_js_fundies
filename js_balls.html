@@ -44,7 +44,7 @@
 			  	cy: this.info.cy,
 			  	r:  radius/5,
 			  	id: html_id,
-			  	style: "fill: black"
+			  	style: "fill: " + '#'+Math.floor(Math.random()*16777215).toString(16)
 			});
 
 			this.rad = circle.r.baseVal.value;
