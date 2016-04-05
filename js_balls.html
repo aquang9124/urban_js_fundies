@@ -39,26 +39,16 @@
 			}
 
 			//create a circle
-			if (radius) {
-				var circle = makeSVG('circle', 
-				{ 	cx: this.info.cx,
-				  	cy: this.info.cy,
-				  	r:  radius,
-				  	id: html_id,
-				  	style: "fill: black"
-				});
-				this.rad = circle.r.baseVal.value;
-			}
-			else {
-				var circle = makeSVG('circle', 
-				{ 	cx: this.info.cx,
-				  	cy: this.info.cy,
-				  	r:  10,
-				  	id: html_id,
-				  	style: "fill: black"
-				});
-				this.rad = circle.r.baseVal.value;
-			}
+			var circle = makeSVG('circle', 
+			{ 	cx: this.info.cx,
+			  	cy: this.info.cy,
+			  	r:  radius/5,
+			  	id: html_id,
+			  	style: "fill: black"
+			});
+
+			this.rad = circle.r.baseVal.value;
+			
 			document.getElementById('svg').appendChild(circle);
 		}
 
@@ -115,7 +105,7 @@
 		}
 
 		//create one circle when the game starts
-		this.createNewCircle(document.body.clientWidth/2, document.body.clientHeight/2);
+		this.createNewCircle(document.body.clientWidth/2, document.body.clientHeight/2, 100);
 	}
 
 	var playground = new PlayGround();
