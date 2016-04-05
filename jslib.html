@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Lib</title>
+</head>
+<body>
+	<script>
+		var _ = {
+			map: function(arr, callback) {
+				var mappedArr = [];
+				for (value in arr) {
+					mappedArr.push(callback(arr[value]));
+				}
+				return mappedArr;
+			},
+			reduce: function(arr, callback) {
+				var sum = 0;
+
+				for (var i = 0; i < arr.length; i++) {
+					sum = callback(sum, arr[i]);
+				}
+
+				arr = [];
+				arr.push(sum)
+				return arr;
+			},
+			find: function(arr, callback) {
+				var foundVal = [];
+				for (value in arr) {
+					if (callback(arr[value])) {
+						foundVal.push(arr[value]);
+						return foundVal;
+					}
+				}
+				return false;
+			},
+			filter: function(arr, callback) {
+				var filtered = [];
+				for (value in arr) {
+					if (callback(arr[value])) {
+						filtered.push(arr[value]);
+					}
+				}
+				return filtered;
+			},
+			reject: function(arr, callback) {
+				var accepted = [];
+				for (var i = 0; i < arr.length; i++) {
+					if (callback(arr[i])) {
+						continue;
+					}
+					else {
+						accepted.push(arr[i]);
+					}
+				}
+				return accepted;
+			},
+		};
+
+		var evens = _.filter([1, 2, 3, 9, 2, 8, 4], function (num) { return num % 2 === 0; });
+		console.log(evens);
+
+		var odds = _.reject([2, 4, 6, 8, 1, 9, 3, 10], function (num) { return num % 2 === 0; });
+		console.log(odds);
+
+		var multFive = _.map([2, 4, 6, 8], function (num) { return num * 5; });
+		console.log(multFive);
+
+		var oneVal = _.reduce([1, 2, 3, 4, 5], function (sum, num) { return sum + num; });
+		console.log(oneVal);
+
+		var even = _.find([1, 5, 3, 4, 2], function (num) { return num % 2 === 0; });
+		console.log(even);
+	</script>
+</body>
+</html>

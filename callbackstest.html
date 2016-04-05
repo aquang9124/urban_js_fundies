@@ -29,6 +29,23 @@
 		}
 
 		console.log(makePasta("farfalle", makePesto));
+
+		function printResult(doSomething) {
+			var result = doSomething();
+			console.log(result);
+		}
+
+		printResult(function() {
+			return 5;
+		});
+
+		function each(arr, callback) {
+			for (var i = 0; i < arr.length; i++) {
+				callback(arr[i]);
+			}
+		}
+
+		each([1, 2, 3], function(num) { console.log(num); });
 	</script>
 </body>
 </html>
