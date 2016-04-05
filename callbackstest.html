@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Callbacks Test</title>
+</head>
+<body>
+	<script>
+		function invoker(x) {
+			x();
+		}
+		var b = function () {
+			console.log("This was invoked inside of another function!");
+		};
+
+		invoker(b);
+
+		function makePasta(pasta, makeSauce) {
+			console.log("Boiling water");
+			console.log("Putting " + pasta + " pasta in the water");
+			var sauce = makeSauce();
+			console.log("Putting " + pasta + " and" + sauce + "together");
+			return pasta + " pasta with " + sauce + " sauce! Voila!";
+		}
+
+		function makePesto() {
+			console.log("Making the sauce");
+			return "pesto";
+		}
+
+		console.log(makePasta("farfalle", makePesto));
+	</script>
+</body>
+</html>

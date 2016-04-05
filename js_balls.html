@@ -24,12 +24,18 @@
 	function Circle(cx, cy, html_id, radius)
 	{
 		var html_id = html_id;
+		var self = this;
 		this.info = { cx: cx,  cy: cy };
 		this.rad = 0;
+		this.color;
 		//private function that generates a random number
 		var randomNumberBetween = function(min, max){
 			return Math.random()*(max-min) + min;
 		}
+
+		this.getHtmlID = function() {
+			return html_id;
+		};
 
 		this.initialize = function(){
 			//give a random velocity for the circle
@@ -44,7 +50,7 @@
 			  	cy: this.info.cy,
 			  	r:  radius/5,
 			  	id: html_id,
-			  	style: "fill: " + '#'+Math.floor(Math.random()*16777215).toString(16)
+			  	style: "fill: " + '#' + Math.floor(Math.random()*16777215).toString(16)
 			});
 
 			this.rad = circle.r.baseVal.value;
@@ -72,6 +78,21 @@
 			el.setAttribute("cy", this.info.cy);
 		}
 
+		this.checkCollision = function(circle2) {
+			var dx = this.info.cx - circle2.info.cx;
+			var dy = this.info.cy - circle2.info.cy;
+			var distance = Math.sqrt(dx*dx + dy*dy);
+
+			if (distance < this.rad + circle2.rad) {
+				this.color = "fill: " + '#'+ Math.floor(Math.random()*16777215).toString(16);
+				document.getElementById("" + this.getHtmlID()).setAttribute("style", this.color);
+				this.info.velocity.x = this.info.velocity.x * -1;
+				this.info.velocity.y = this.info.velocity.y * -1;
+				circle2.info.velocity.y = circle2.info.velocity.y * -1;
+				circle2.info.velocity.x = circle2.info.velocity.x * -1;
+			}
+		};
+
 		//creates the SVG element and returns it
 		var makeSVG = function(tag, attrs) {
 	        var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
@@ -95,6 +116,12 @@
 			for(circle in circles)
 			{
 				circles[circle].update(1);
+			}
+
+			for (var i = 0; i < circles.length; i++) {
+				for (var k = i+1; k < circles.length; k++) {
+					circles[i].checkCollision(circles[k]);
+				}
 			}
 		}
 

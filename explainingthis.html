@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Explaining "this" in JS</title>
+</head>
+<body>
+	<script>
+		// In most cases the value of 'this' is determined by how a function is called
+		/*
+			When 'this' is used in the global execution context, meaning whenever
+			'this' is referred to outside of ANY function, 'this' is referring to
+			the global object. For web browsers the global object is the window object.
+			The window object is any open window in a browser.
+		*/
+
+		// ----- Examples of 'this' in the global execution context ----- //
+
+		console.log(this === window); 
+		// This prints true because 'this' is being referenced in the global context
+		// and thus it is referencing the window object.
+		console.log(this.document == document);
+		// This line will return true also because when a HTML document has been fully 
+		// loaded into a web browser it becomes a document object. The document is a part of
+		// the global window object so it can be accessed with the syntax window.document.
+		// this === window so this.document is the same as saying window.document.
+
+		this.a = 37;
+		console.log(window.a);
+		// 37 will be logged to the console. Again, this === window when referenced outside of a function
+		// so window.a is the same as this.a.
+		
+		// ----- Examples of 'this' in the function context ---- //
+
+		function foo() {
+			return this;
+		}
+
+		console.log(foo() === window);
+		// This will print true because when Javascript is not in strict mode
+		// the value of 'this' must always default to the global object.
+		// Again, when we're talking about web browsers, window is the global object.
+
+		function foo2() {
+			"use strict";
+			return this;
+		}
+
+		console.log(foo2() === undefined);
+		// In strict mode the value of 'this' remains whatever it was set to.
+		// Because 'this' was never set to anything it is undefined.
+		// Strict mode basically makes it so that bad code give you errors
+		// instead of in normal JS where JS will try its darndest
+		// to run.
+
+		// ----- Examples of 'this' when a function is called as an object method ----- //
+
+		/* ----------------------------------------------------------------------
+
+		When a function is called as a method of an object, its 'this' is
+		set to the object the method is called on. That's why a private method
+		cannot access 'this'. It's because the private method is not directly 
+		called by the object. The private method is called by another method 
+		and so it's 'this' is not set to reference the object that you want it to 
+		reference. 
+
+		----------------------------------------------------------------------- */
+
+		function testObs() {
+			var self = this;
+			this.nums = 37;
+			this.getNums = function() {
+				return this.nums;
+			};
+			var setNums = function(num) {
+				self.nums = num;
+			};
+			this.changeNums = function(num) {
+				setNums(num);
+			};
+		}
+
+		var obbie = new testObs();
+
+		// Tip: When a function is used as a constructor with the 'new' keyword, 
+		// like in this example, its 'this' is bound to the new object that is being constructed.
+		// So in this context, 'this' == obbie. Self is a variable that references 'this' so,
+		// for this particular instance, 'self' will always be pointing to obbie.
+
+		console.log(obbie.getNums()); 
+		// Console logs 37
+
+		console.log(obbie.nums);
+		// It also logs 37
+
+		obbie.changeNums(36);
+		console.log(obbie.getNums());
+
+		// Here we use changeNums() in order to invoke setNums which will update the value
+		// of nums. Technically, since nums is not private, we could just access nums directly
+		// and change its value.
+
+		obbie.nums = 24;
+		console.log(obbie.nums);
+
+		// Outputs 24, you get the idea.
+
+	</script>
+</body>
+</html>
