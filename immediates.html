@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Immediate Functions</title>
+</head>
+<body>
+	<script>
+		( function() {
+			var a = "Hi";
+			var b = 38;
+			function test() {
+				console.log(a);
+			}
+
+			function add() {
+				console.log(b);
+			}
+			test();
+		}());
+		
+		( function() {
+			var magic = "This is magic!";
+			function startMagic() {
+				console.log(magic);
+			}
+			startMagic();
+		} )();
+	</script>
+</body>
+</html>

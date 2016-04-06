@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hunting Github</title>
+</head>
+<body>
+	<button id="ajax-btn">Get Name</button>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#ajax-btn").click(function() {
+				$.get("https://api.github.com/users/aquang9124", displayName);
+
+				function displayName(data) {
+					$(document.body).append("<p>" + data.name + "</p>");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

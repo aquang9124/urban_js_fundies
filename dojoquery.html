@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dojo Query</title>
+</head>
+<body>
+	<button id="myBtn">Hi</button>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script>
+		var $Dojo;
+		( function() {
+			$Dojo = function(elID) {
+				console.log(elID);
+				var htmlEl = document.getElementById(elID);
+				htmlEl.click = function(callback) {
+					htmlEl.addEventListener('click', callback);
+				};
+				htmlEl.hover = function(hoverOver, hoverOut) {
+					htmlEl.addEventListener('mouseover', hoverOver);
+					htmlEl.addEventListener('mouseout', hoverOut);
+				};
+				return htmlEl;
+			}
+		}());
+		$Dojo('myBtn').click(function() { console.log("Hi!"); });
+		$Dojo('myBtn').hover(function() { console.log("Hovering over"); }, function() { console.log("Not hovering anymore."); });
+	</script>
+</body>
+</html>
