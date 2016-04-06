@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fib and Nacci</title>
+</head>
+<body>
+	<script>
+		function fib() {
+			var i = 0;
+			var j = i + 1;
+			var sequence = [0, 1];
+			var current = sequence[i];
+			var next = sequence[j];
+			var newNum;
+			function nacci() {
+				newNum = sequence[i++] + sequence[j++];
+				sequence.push(newNum);
+				console.log(sequence);
+			}
+			return nacci;
+		}
+
+		var fibCounter = fib();
+		fibCounter();
+		fibCounter();
+		fibCounter();
+		fibCounter();
+	</script>
+</body>
+</html>

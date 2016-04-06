@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Closures</title>
+</head>
+<body>
+	<script>
+		function Outer() {
+			var count = 0;
+
+			function inner() {
+				count++;
+				console.log(count);
+			}
+			return inner;
+		}
+
+		var counter = Outer();
+
+		counter();
+		counter();
+		counter();
+		counter();
+	</script>
+</body>
+</html>
