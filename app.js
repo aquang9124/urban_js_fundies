@@ -318,3 +318,44 @@ console.log("hi" || "hello");
 // It will return the first value that returns true;
 
 // -- Default Values and Execution Contexts -- //
+console.log(libraryName);
+// Look at lib1 and lib2
+
+// -- Objects and Functions -- //
+var person = new Object();
+
+person["firstname"] = "Tony";
+person["lastname"] = "Alicea";
+
+var firstNameProperty = "firstname";
+console.log(person);
+console.log(person[firstNameProperty]);
+
+console.log(person.firstname);
+person.address = new Object();
+person.address.street = "111 Main St.";
+person.address.city = "New York";
+person.address.state = "NY";
+
+console.log(person.address.street);
+console.log(person.address.city);
+console.log(person['address']['state']);
+
+// -- Objects and Object Literals -- //
+var person = {
+	firstname: "Alex",
+	lastname: "Quang",
+	address: {
+		street: "111 Main St.",
+		city: "New York",
+		state: "NY"
+	},
+};
+// This is an object literal. It's the same as 'new Object()'.
+console.log(person);
+// This is the quicker and preferred way to create an object.
+function sayHi(person) {
+	console.log("Hi " + person.firstname);
+}
+
+sayHi(person);
