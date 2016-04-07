@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Js Closures Test</title>
+</head>
+<body>
+	<script>
+		function outerFunc() {
+			var count = 0;
+			function innerFunc() {
+				count++;
+				console.log(count);
+			}
+
+			return innerFunc;
+		}
+
+		var counter = outerFunc();
+		counter();
+		counter();
+		counter();
+	</script>
+</body>
+</html>
